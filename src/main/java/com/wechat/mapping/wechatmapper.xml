@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wechat.dao.UserDao">
+	<resultMap id="BaseResultMap1"
+		type="com.wechat.model.usermessage">
+		<id column="openId" jdbcType="VARCHAR" property="openId" />
+		<result column="nickName" jdbcType="VARCHAR"
+			property="nickName" />
+		<result column="country" jdbcType="VARCHAR" property="country" />
+		<result column="province" jdbcType="VARCHAR"
+			property="province" />
+		<result column="city" jdbcType="VARCHAR" property="city" />
+		<result column="language" jdbcType="VARCHAR"
+			property="language" />
+		<result column="avateurtl" jdbcType="VARCHAR"
+			property="avateurtl" />
+		<result column="unum" jdbcType="INTEGER" property="unum" />
+	</resultMap>
+	<resultMap type="com.wechat.model.qun" id="BaseResult">
+		<id column="openId" jdbcType="VARCHAR" property="openId" />
+		<id column="openGid" jdbcType="VARCHAR" property="openGid" />
+		<result column="qunname" jdbcType="VARCHAR" property="qunname" />
+		<result column="qunImage" jdbcType="VARCHAR"
+			property="qunImage" />
+		<result column="qnum" jdbcType="INTEGER" property="qnum" />
+	</resultMap>
+	<resultMap type="com.wechat.model.icards" id="ResultMap">
+		<id column="openId" jdbcType="VARCHAR" property="openId" />
+		<id column="openGid" jdbcType="VARCHAR" property="openGid" />
+		<result column="job" jdbcType="VARCHAR" property="job" />
+		<result column="company" jdbcType="VARCHAR" property="company" />
+		<result column="telephone" jdbcType="VARCHAR"
+			property="telephone" />
+		<result column="wechatnumber" jdbcType="VARCHAR"
+			property="wechatnumber" />
+		<result column="need" jdbcType="VARCHAR" property="need" />
+		<result column="text" jdbcType="VARCHAR" property="text" />
+		<result column="inum" jdbcType="INTEGER" property="inum" />
+	</resultMap>
+
+	<select id="selectByOpenIdFromIcards"
+		parameterType="com.wechat.model.icards">
+		select * from icards where openId=#{openId,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByOpenGidFromIcards"
+		parameterType="com.wechat.model.icards">
+		select * from icards where openGid=#{openGid,jdbcType=VARCHAR}
+	</select>
+	<insert id="insertOrUpdateToIcards">
+		insert into icards
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="openId != null">
+				openId,
+			</if>
+			<if test="openGid != null">
+				openGid,
+			</if>
+			<if test="job != null">
+				job,
+			</if>
+			<if test="company != null">
+				company,
+			</if>
+			<if test="telephone !=null">
+				telephone,
+			</if>
+			<if test="wechatnumber !=null">
+				wechatnumber,
+			</if>
+			<if test="need !=null">
+				need,
+			</if>
+			<if test="text !=null">
+				text,
+			</if>
+			<if test="inum !=null">
+				inum,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="openId != null">
+				#{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="openGid != null">
+				#{openGid,jdbcType=VARCHAR},
+			</if>
+			<if test="job != null">
+				#{job,jdbcType=VARCHAR},
+			</if>
+			<if test="company != null">
+				#{company,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone !=null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="wechatnumber !=null">
+				#{wechatnumber,jdbcType=VARCHAR},
+			</if>
+			<if test="need !=null">
+				#{need,jdbcType=VARCHAR},
+			</if>
+			<if test="text !=null">
+				#{text,jdbcType=VARCHAR},
+			</if>
+			<if test="inum !=null">
+				#{inum,jdbcType=INTEGER},
+			</if>
+			ON DUPLICATE KEY UPDATE inum=inum+1;
+		</trim>
+	</insert>
+	<update id="updateToIcardsByOpenId">
+		update icards
+		<set>
+			<if test="openGid != null">
+				#{openGid,jdbcType=VARCHAR},
+			</if>
+			<if test="job != null">
+				#{job,jdbcType=VARCHAR},
+			</if>
+			<if test="company != null">
+				#{company,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone !=null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="wechatnumber !=null">
+				#{wechatnumber,jdbcType=VARCHAR},
+			</if>
+			<if test="need !=null">
+				#{need,jdbcType=VARCHAR},
+			</if>
+			<if test="text !=null">
+				#{text,jdbcType=VARCHAR},
+			</if>
+			<if test="inum !=null">
+				#{inum,jdbcType=INTEGER},
+			</if>
+		</set>
+		where openId=#{openId,jdbcType=VARCHAR}
+
+	</update>
+
+	<update id="updateToIcardsByOpenGid">
+		update icards
+		<set>
+			<if test="openGid != null">
+				#{openGid,jdbcType=VARCHAR},
+			</if>
+			<if test="job != null">
+				#{job,jdbcType=VARCHAR},
+			</if>
+			<if test="company != null">
+				#{company,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone !=null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="wechatnumber !=null">
+				#{wechatnumber,jdbcType=VARCHAR},
+			</if>
+			<if test="need !=null">
+				#{need,jdbcType=VARCHAR},
+			</if>
+			<if test="text !=null">
+				#{text,jdbcType=VARCHAR},
+			</if>
+			<if test="inum !=null">
+				#{inum,jdbcType=INTEGER},
+			</if>
+		</set>
+		where openGid=#{openGid,jdbcType=VARCHAR}
+
+	</update>
+	<select id="selectByIdFromUserMessage"
+		parameterType="com.wechat.model.usermessage">
+		select * from usermessage where openId=#{openId,jdbcType=VARCHAR}
+	</select>
+	<insert id="insertOrUpdateToUserMassage">
+		insert into usermessage
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="openId !=null">
+				openId,
+			</if>
+			<if test="nickName != null">
+				nickName,
+			</if>
+			<if test="country != null">
+				country,
+			</if>
+			<if test="job != null">
+				job,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+			<if test="language !=null">
+				language,
+			</if>
+			<if test="avaterurl !=null">
+				avaterurl,
+			</if>
+			<if test="unum !=null">
+				unum,
+			</if>
+
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="openId != null">
+				#{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="nickName != null">
+				#{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="country != null">
+				#{country,jdbcType=VARCHAR},
+			</if>
+			<if test="job != null">
+				#{job,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone !=null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="wechatnumber !=null">
+				#{wechatnumber,jdbcType=VARCHAR},
+			</if>
+			<if test="need !=null">
+				#{need,jdbcType=VARCHAR},
+			</if>
+			<if test="text !=null">
+				#{text,jdbcType=VARCHAR},
+			</if>
+			<if test="inum !=null">
+				#{inum,jdbcType=INTEGER},
+			</if>
+			ON DUPLICATE KEY UPDATE inum=inum+1;
+		</trim>
+	</insert>
+	<update id="updateToUserMessage">
+		update usermessage
+		<set>
+			<if test="openGid != null">
+				#{openGid,jdbcType=VARCHAR},
+			</if>
+			<if test="job != null">
+				#{job,jdbcType=VARCHAR},
+			</if>
+			<if test="company != null">
+				#{company,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone !=null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="wechatnumber !=null">
+				#{wechatnumber,jdbcType=VARCHAR},
+			</if>
+			<if test="need !=null">
+				#{need,jdbcType=VARCHAR},
+			</if>
+			<if test="text !=null">
+				#{text,jdbcType=VARCHAR},
+			</if>
+			<if test="inum !=null">
+				#{inum,jdbcType=INTEGER},
+			</if>
+		</set>
+		where openId=#{openId,jdbcType=VARCHAR}
+
+	</update>
+	<select id="selectByIdFromQun"
+		parameterType="com.wechat.model.qun">
+		select * from icards where openId=#{openId,jdbcType=VARCHAR}
+	</select>
+	<insert id="insertOrUpdateToUserMassage">
+		insert into qun
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="openId !=null">
+				openId,
+			</if>
+			<if test="openGid != null">
+				openGid,
+			</if>
+			<if test="qunname != null">
+				qunname,
+			</if>
+			<if test="qunImage != null">
+				qunImage,
+			</if>
+			<if test="qnum !=null">
+				qnum,
+			</if>
+
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="openId != null">
+				#{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="openGid != null">
+				#{openGid,jdbcType=VARCHAR},
+			</if>
+			<if test="qunname != null">
+				#{qunname,jdbcType=VARCHAR},
+			</if>
+			<if test="qunImage != null">
+				#{qunImage,jdbcType=VARCHAR},
+			</if>
+			<if test="qnum !=null">
+				#{qnum,jdbcType=INTEGER},
+			</if>
+			ON DUPLICATE KEY UPDATE qnum=qnum+1;
+		</trim>
+	</insert>
+	<update id="updateToQun">
+		update qun
+		<set>
+			<if test="openId != null">
+				#{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="openGid != null">
+				#{openGid,jdbcType=VARCHAR},
+			</if>
+			<if test="qunname != null">
+				#{qunname,jdbcType=VARCHAR},
+			</if>
+			<if test="qunImage != null">
+				#{qunImage,jdbcType=VARCHAR},
+			</if>
+			<if test="qnum !=null">
+				#{qnum,jdbcType=INTEGER},
+			</if>
+		</set>
+		where openGid=#{openGid,jdbcType=VARCHAR}
+		</update>
+</mapper>
